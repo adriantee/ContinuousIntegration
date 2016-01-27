@@ -1,4 +1,4 @@
-# ContinuousIntegration
+# Continuous Integration
 
 ## Installation
 Install git on your server
@@ -42,10 +42,22 @@ give ownership of folder to apache so it can execute the php file from web load
 
 copy pull.php to another directory in your server /var/www/html/script/ (dont put in same directory as the git dir)
 
+create a config file for git to /var/www/.ssh/config:
+config
+
+with this content:
+Host bitbucket.org 
+ User apache
+ HostName bitbucket.org 
+ IdentityFile /var/www/.ssh/id_rsa
+
+add bitbucket.org to known host:
+ssh-keyscan -t rsa bitbucket.org >> /var/www/.ssh/known_hosts
 
 add the url to the pull.php file to your bitbucket webhook:
 http://domain.com/script/pull.php?c=sg
 
+manual terminal commands:
 ssh-agent bash -c 'ssh-add /var/www/.ssh/id_rsa; git pull'
 
 
