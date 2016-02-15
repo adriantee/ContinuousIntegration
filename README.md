@@ -60,6 +60,14 @@ http://domain.com/script/pull.php?c=sg
 manual terminal commands:
 ssh-agent bash -c 'ssh-add /var/www/.ssh/id_rsa; git pull'
 
+### Step 2
 
+Disable listing of git files and directory, place in .htaccess:
+
+# disable directory listing
+Options -Indexes
+
+# disable git listing
+RedirectMatch 404 /\.git
 
 
